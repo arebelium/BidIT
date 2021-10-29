@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">BidIT</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="home">Home</string>
+    <string name="domestic">Domestic</string>
+    <string name="garden">Garden</string>
+    <string name="renovation">Renovation</string>
+    <string name="clothes">Clothes</string>
+    <string name="jewelry">Jewelry</string>
+    <string name="cars">Cars</string>
+    <string name="my_account">My Account</string>
+    <string name="reserved">Reserved Items</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 </resources>

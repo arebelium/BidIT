@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/nav_domestic"
+        android:title="@string/domestic" />
+    <item
+        android:id="@+id/nav_garden"
+        android:title="@string/garden" />
+    <item
+        android:id="@+id/renovation"
+        android:title="@string/renovation" />
+    <item
+        android:id="@+id/nav_clothes"
+        android:title="@string/clothes" />
+    <item
+        android:id="@+id/nav_jewelry"
+        android:title="@string/jewelry" />
+    <item
+        android:id="@+id/nav_cars"
+        android:title="@string/cars" />
+    <item
+        android:id="@+id/nav_account"
+        android:title="@string/my_account" />
+    <item
+        android:id="@+id/nav_reserved"
+        android:title="@string/reserved" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:title="@string/settings" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="@string/logout" />
+
+</menu>
