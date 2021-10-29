@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="128dp"
             android:gravity="center"
-            android:text="Home View"
+            android:text="Home View is cool"
             android:textSize="18sp" />
 
     </LinearLayout>
