@@ -47,10 +47,6 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.nav_add:
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("message");
-
-                        myRef.setValue("Hello, World!");
                         intent = new Intent(HomeActivity.this, AddProduct.class);
                         startActivity(intent);
 

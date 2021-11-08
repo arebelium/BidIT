@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,12 +19,18 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class AddProduct extends AppCompatActivity {
 
 
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
-    DatabaseReference db;
+    private DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +75,11 @@ public class AddProduct extends AppCompatActivity {
                 EditText txtName = findViewById(R.id.editTxtName);
                 EditText txtDescription = findViewById(R.id.editTxtDescription);
                 EditText txtPrice = findViewById(R.id.editTxtPrice);
-                Product product = new Product(txtName.getText().toString(),txtDescription.getText().toString()); //,Double.valueOf(txtPrice.getText().toString())
-                db = FirebaseDatabase.getInstance().getReference();
-                db.child(txtName.getText().toString()).setValue(txtDescription.getText().toString());
+                Product product = new Product(txtName.getText().toString(),txtDescription.getText().toString(), Double.parseDouble(txtPrice.getText().toString()));
+                database = FirebaseDatabase.getInstance().getReference();
+                writeNewProduct(product);
+                finish(); //reloads page
+                startActivity(getIntent());
             }
         });
     }
@@ -84,4 +93,12 @@ public class AddProduct extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void writeNewProduct(Product product) { //writes product to database
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"));
+        Date currentLocalTime = cal.getTime();
+        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss_SSS");
+        String localTime = date.format(currentLocalTime);
+        database.child("products").child(localTime).setValue(product);
+    }
+   
 }
