@@ -30,7 +30,6 @@ database = FirebaseDatabase.getInstance().getReference("products"); //tiek apska
                     String name = item.child("name").getValue().toString();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 //te var error izmest
