@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,6 +61,13 @@ public class AddProduct extends AppCompatActivity {
                     case R.id.nav_settings:
                         return true;
                     case R.id.nav_logout:
+                        SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("email", "");
+                        editor.putString("name", "");
+                        editor.apply();
+                        intent = new Intent(AddProduct.this, LoginActivity.class);
+                        startActivity(intent);
                         return true;
                     default:
                         return onOptionsItemSelected(item);
@@ -75,10 +83,10 @@ public class AddProduct extends AppCompatActivity {
                 EditText txtName = findViewById(R.id.editTxtName);
                 EditText txtDescription = findViewById(R.id.editTxtDescription);
                 EditText txtPrice = findViewById(R.id.editTxtPrice);
-                Product product = new Product(txtName.getText().toString(),txtDescription.getText().toString(), Double.parseDouble(txtPrice.getText().toString()));
+                Product product = new Product(txtName.getText().toString(), txtDescription.getText().toString(), Double.parseDouble(txtPrice.getText().toString()));
                 database = FirebaseDatabase.getInstance().getReference();
                 writeNewProduct(product);
-                finish(); //reloads page
+                finish();
                 startActivity(getIntent());
             }
         });
@@ -100,5 +108,5 @@ public class AddProduct extends AppCompatActivity {
         String localTime = date.format(currentLocalTime);
         database.child("products").child(localTime).setValue(product);
     }
-   
+
 }

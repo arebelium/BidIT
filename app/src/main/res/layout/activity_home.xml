@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--the root view must be the DrawerLayout-->
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
-    tools:ignore="HardcodedText">
+    tools:context=".HomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/displayData"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
-            android:gravity="center"
-            android:text="Home View is cool"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Click to Show  Users"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="temp"
+            android:textColor="@color/design_default_color_primary"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
-    <!--this the navigation view which draws
-        and shows the navigation drawer-->
-    <!--include the menu created in the menu folder-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

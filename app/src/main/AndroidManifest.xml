@@ -11,7 +11,7 @@
         android:theme="@style/Theme.BidIT">
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddProduct" />
-        <activity android:name=".HomeActivity">
-        </activity>
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
