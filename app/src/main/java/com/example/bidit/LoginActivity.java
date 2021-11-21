@@ -131,8 +131,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError error) {
-                        TextView textView = findViewById(R.id.results);
-                        textView.setText(error.toString());
                     }
                 });
     }
