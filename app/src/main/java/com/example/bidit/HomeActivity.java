@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 
@@ -25,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -113,7 +116,7 @@ public class HomeActivity extends AppCompatActivity {
                             for (int i = 0; i < jArray.length(); i++) {
                                 try {
                                     JSONObject object = jArray.getJSONObject(i);
-                                    productList.add(new Item(object.getJSONObject("product").getString("name"), R.drawable.background_wallpaper, object.getJSONObject("auction").getInt("id")));
+                                    productList.add(new Item(object.getJSONObject("product").getString("name"), object.getJSONObject("auction").getInt("id"), object.getJSONObject("product").getString("image")));
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -126,7 +129,7 @@ public class HomeActivity extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent intent = new Intent(HomeActivity.this, SecondActivity.class);
-                                    intent.putExtra("image", productList.get(position).getProductImage());
+                                    intent.putExtra("image", productList.get(position).getProductImageUrl());
                                     intent.putExtra("id", productList.get(position).getProductId());
                                     startActivity(intent);
                                 }
@@ -139,4 +142,31 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void syncAuctionInfo(String id) {
+        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.get("https://bidit-web.herokuapp.com/api/auctions/" + id)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            int id = response.getJSONObject("auction").getInt("id");
+                            int productId = response.getJSONObject("auction").getInt("product_id");
+                            int winnerId = response.getJSONObject("auction").getInt("winner_id");
+                            int transactionId = response.getJSONObject("auction").getInt("transaction_id");
+                            int isComplete = response.getJSONObject("auction").getInt("is_complete");
+                            String time = response.getJSONObject("auction").getString("expires_at");
+                            String name = response.getJSONObject("product").getString("name");
+                            String description = response.getJSONObject("product").getString("description");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) { }
+                });
+    }
+
 }

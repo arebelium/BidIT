@@ -2,12 +2,12 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ScrollView01"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:scrollbars="vertical">
 
     <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -17,6 +17,7 @@
             android:id="@+id/selectedImage"
             android:layout_width="300dp"
             android:layout_height="300dp"
+            android:src="@drawable/not_available"
             android:layout_centerHorizontal="true"
             android:padding="15dp"
             android:scaleType="fitXY" />

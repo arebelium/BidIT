@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:padding="5dp"
         android:scaleType="fitXY"
-        android:src="@drawable/background_wallpaper" />
+        android:src="@drawable/not_available" />
 
     <TextView
         android:id="@+id/textView"

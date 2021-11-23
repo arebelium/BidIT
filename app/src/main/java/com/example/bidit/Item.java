@@ -3,24 +3,23 @@ package com.example.bidit;
 public class Item {
 
     String productListName;
-    int productListImage;
     int productListId;
+    String productImageUrl;
 
-    public Item(String productName, int productImage, int productId) {
-        this.productListImage = productImage;
+    public Item(String productName, int productId, String url) {
         this.productListName = productName;
         this.productListId = productId;
+        this.productImageUrl = url;
     }
 
     public String getProductName() {
         return productListName;
     }
 
-    public int getProductImage() {
-        return productListImage;
-    }
-
     public int getProductId() {
         return productListId;
     }
+
+    public String getProductImageUrl(){return productImageUrl;}
+
 }

@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError error) {
+                        Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

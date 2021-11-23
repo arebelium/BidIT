@@ -2,6 +2,7 @@ package com.example.bidit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -12,10 +13,14 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Cache;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import okhttp3.OkHttpClient;
 
 
 public class SecondActivity extends AppCompatActivity {
@@ -31,7 +36,8 @@ public class SecondActivity extends AppCompatActivity {
         Intent intent = getIntent();
         timer = findViewById(R.id.timer);
         textView = findViewById(R.id.textView);
-        selectedImage.setImageResource(intent.getIntExtra("image", 0));
+        //selectedImage.setImageResource(intent.getIntExtra("image", 0));
+
         textView.setText(String.valueOf(intent.getIntExtra("id", 0)));
         AndroidNetworking.initialize(getApplicationContext());
         AndroidNetworking.get("https://bidit-web.herokuapp.com/api/auctions/" + intent.getIntExtra("id", 0))
@@ -41,6 +47,11 @@ public class SecondActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             timer.setText(response.getJSONObject("highestBid").getString("name"));
+                            Picasso.with(SecondActivity.this)
+                                    .load(intent.getStringExtra("image"))
+                                    .noPlaceholder()
+                                    .fit()
+                                    .centerCrop().into(selectedImage);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -52,4 +63,5 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }
