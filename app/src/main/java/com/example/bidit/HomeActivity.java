@@ -113,8 +113,8 @@ public class HomeActivity extends AppCompatActivity {
                             for (int i = 0; i < jArray.length(); i++) {
                                 try {
                                     JSONObject object = jArray.getJSONObject(i);
-
                                     productList.add(new Item(object.getJSONObject("product").getString("name"), R.drawable.background_wallpaper, object.getJSONObject("auction").getInt("id")));
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
