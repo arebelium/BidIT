@@ -32,7 +32,7 @@ public class MyAdapter extends ArrayAdapter {
         View v = convertView;
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         v = inflater.inflate(R.layout.grid_view_items, null);
-        TextView textView = (TextView) v.findViewById(R.id.textView);
+        TextView textView = (TextView) v.findViewById(R.id.txtTimer2);
         ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
         textView.setText(productList.get(position).getProductName());
         Picasso.with(getContext())

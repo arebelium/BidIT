@@ -1,6 +1,7 @@
 package com.example.bidit;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,6 +24,7 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -117,7 +120,7 @@ public class HomeActivity extends AppCompatActivity {
                                 try {
                                     JSONObject object = jArray.getJSONObject(i);
                                     productList.add(new Item(object.getJSONObject("product").getString("name"), object.getJSONObject("auction").getInt("id"), object.getJSONObject("product").getString("image")));
-
+                                    syncAuctionInfo(String.valueOf(object.getJSONObject("auction").getInt("id")));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -151,21 +154,57 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            int productId, winnerId, transactionId, highestBid=0;
                             int id = response.getJSONObject("auction").getInt("id");
-                            int productId = response.getJSONObject("auction").getInt("product_id");
-                            int winnerId = response.getJSONObject("auction").getInt("winner_id");
-                            int transactionId = response.getJSONObject("auction").getInt("transaction_id");
+                            productId = Integer.parseInt(response.getJSONObject("auction").getString("product_id"));
+                            try{
+                                winnerId = response.getJSONObject("auction").getInt("winner_id");
+                            } catch (JSONException e){
+                                winnerId = 0;
+                            }
+                            try{
+                                transactionId = response.getJSONObject("auction").getInt("transactionId");
+                            } catch (JSONException e){
+                                transactionId = 0;
+                            }
+                            try{
+                                JSONObject bid = response.getJSONObject("highestBid");
+                                highestBid = bid.getInt("amount");
+                            } catch (JSONException e){
+                                highestBid = 0;
+                            }
                             int isComplete = response.getJSONObject("auction").getInt("is_complete");
+                            int price = response.getJSONObject("product").getInt("price");
                             String time = response.getJSONObject("auction").getString("expires_at");
                             String name = response.getJSONObject("product").getString("name");
                             String description = response.getJSONObject("product").getString("description");
+                            ArrayList<Bid> bids = new ArrayList<>();
+                            JSONArray jArray = response.getJSONArray("bids");
+                            if (jArray != null) {
+                                for (int i = 0; i < jArray.length(); i++) {
+                                    try {
+                                        JSONObject object = jArray.getJSONObject(i);
+                                        Bid bid = new Bid(Integer.parseInt(object.getString("id")), object.getInt("amount"), object.getString("name"), id);
+                                        bids.add(bid);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                            Auction auction = new Auction(id, productId, winnerId, transactionId, isComplete, price, time, name, description, highestBid);
+                            database = FirebaseDatabase.getInstance().getReference();
+                            database.child("auctions").child(id + "").setValue(auction);
+                            database.child("bids").child(id + "").setValue(bids);
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(HomeActivity.this, e.toString(),
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
-                    public void onError(ANError error) { }
+                    public void onError(ANError error) {
+                    }
                 });
     }
 
