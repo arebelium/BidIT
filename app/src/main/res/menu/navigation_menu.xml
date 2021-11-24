@@ -1,10 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
-        android:title="@string/home" />
+    <group android:id="@+id/grp1">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+    </group>
+    <group android:id="@+id/grp2">
     <item
         android:id="@+id/nav_bids"
         android:icon="@drawable/ic_my_bids"
@@ -28,6 +31,7 @@
         android:visible="false"
         android:icon="@drawable/ic_reserved"
         android:title="@string/reserved" />
+    </group>
 
     <item
         android:id="@+id/nav_account"
@@ -40,9 +44,11 @@
         android:icon="@drawable/ic_settings"
         android:title="@string/settings" />
 
+    <group android:id="@+id/grp3">
     <item
         android:id="@+id/nav_logout"
         android:icon="@drawable/ic_exit"
         android:title="@string/logout" />
+    </group>
 
 </menu>
