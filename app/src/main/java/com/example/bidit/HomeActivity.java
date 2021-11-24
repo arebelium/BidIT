@@ -1,9 +1,12 @@
 package com.example.bidit;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -45,6 +48,17 @@ public class HomeActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //navbar image start
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_bg));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.navigation_image, null);
+        actionBar.setCustomView(view);
+        //navbar image end
 
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);

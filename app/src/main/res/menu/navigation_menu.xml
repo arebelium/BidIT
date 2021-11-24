@@ -1,34 +1,37 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
-        android:title="@string/home" />
-    <item
-        android:id="@+id/nav_bids"
-        android:icon="@drawable/ic_my_bids"
-        android:title="@string/my_bids" />
-    <item
-        android:id="@+id/nav_wins"
-        android:icon="@drawable/ic_my_wins"
-        android:title="@string/my_wins" />
-    <item
-        android:id="@+id/nav_cart"
-        android:icon="@drawable/ic_cart"
-        android:title="@string/cart" />
-    <item
-        android:id="@+id/nav_add"
-        android:visible="false"
-        android:icon="@drawable/ic_add"
-        android:title="@string/add_item"/>
+    <group android:id="@+id/grp1">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+    </group>
+    <group android:id="@+id/grp2">
+        <item
+            android:id="@+id/nav_bids"
+            android:icon="@drawable/ic_my_bids"
+            android:title="@string/my_bids" />
+        <item
+            android:id="@+id/nav_wins"
+            android:icon="@drawable/ic_my_wins"
+            android:title="@string/my_wins" />
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_cart"
+            android:title="@string/cart" />
+        <item
+            android:id="@+id/nav_add"
+            android:visible="false"
+            android:icon="@drawable/ic_add"
+            android:title="@string/add_item"/>
 
-    <item
-        android:id="@+id/nav_reserved"
-        android:visible="false"
-        android:icon="@drawable/ic_reserved"
-        android:title="@string/reserved" />
-
+        <item
+            android:id="@+id/nav_reserved"
+            android:visible="false"
+            android:icon="@drawable/ic_reserved"
+            android:title="@string/reserved" />
+    </group>
     <item
         android:id="@+id/nav_account"
         android:icon="@drawable/ic_account"
@@ -39,10 +42,10 @@
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings" />
-
-    <item
-        android:id="@+id/nav_logout"
-        android:icon="@drawable/ic_exit"
-        android:title="@string/logout" />
-
+    <group android:id="@+id/grp3">
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit"
+            android:title="@string/logout" />
+    </group>
 </menu>
