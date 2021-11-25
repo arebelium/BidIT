@@ -2,9 +2,11 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background_wallpaper_home"
     android:scrollbars="vertical">
 
     <RelativeLayout
@@ -32,16 +34,18 @@
             android:layout_marginTop="13dp"
             android:text=""
             android:textColor="#000" />
-        <ImageView
+
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/selectedImage"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:src="@drawable/not_available"
             android:layout_below="@+id/txtTimer2"
             android:layout_centerHorizontal="true"
             android:padding="15dp"
             android:scaleType="fitXY"
-            tools:ignore="ContentDescription" />
+            android:src="@drawable/not_available"
+            tools:ignore="ContentDescription"
+            app:shapeAppearanceOverlay="@style/RoundedSquare"/>
         <TextView
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
@@ -52,13 +56,17 @@
             android:layout_marginTop="13dp"
             android:text=""
             android:textColor="#000" />
+
         <Button
             android:id="@+id/btnDescription"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
             android:layout_below="@+id/txtName"
             android:text="Description"
+            android:backgroundTint="@color/gradient_start_color"
             android:textSize="15sp" />
+
         <TextView
             android:id="@+id/txtDescription"
             android:layout_width="wrap_content"
@@ -72,11 +80,13 @@
             android:textColor="#000" />
         <Button
             android:id="@+id/btnBids"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
             android:textAlignment="center"
+            android:layout_centerHorizontal="true"
             android:layout_below="@+id/txtDescription"
             android:text="Previous Bids"
+            android:backgroundTint="@color/gradient_start_color"
             android:textSize="15sp" />
         <TextView
             android:id="@+id/txtBids"
@@ -91,11 +101,13 @@
             android:textColor="#000" />
         <Button
             android:id="@+id/btnPlace"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
             android:textAlignment="center"
             android:layout_below="@+id/txtBids"
             android:text="Place a Bid"
+            android:backgroundTint="@color/gradient_start_color"
             android:textSize="15sp" />
     </RelativeLayout>
 
