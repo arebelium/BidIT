@@ -67,7 +67,6 @@ public class HomeActivity extends AppCompatActivity {
         actionBar.setCustomView(view);
         //navbar image end
 
-
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
@@ -96,6 +95,8 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.nav_account:
+                        intent = new Intent(HomeActivity.this, AccountActivity.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_settings:
                         return true;
