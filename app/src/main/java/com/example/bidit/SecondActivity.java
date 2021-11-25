@@ -51,9 +51,18 @@ public class SecondActivity extends AppCompatActivity {
     Button btnDescription, btnBids, btnPlace;
     private DatabaseReference database, database2;
     String time, bidText, btnText;
+
     public void onBackPressed() {
-        startActivity(new Intent(SecondActivity.this, HomeActivity.class));
+        Intent intent = getIntent();
+        String a = intent.getStringExtra("activity");
+        if (a.equals("MyBids")) {
+            startActivity(new Intent(SecondActivity.this, MyBids.class));
+        } else if (a.equals("Home")) {
+            startActivity(new Intent(SecondActivity.this, HomeActivity.class));
+
+        }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
