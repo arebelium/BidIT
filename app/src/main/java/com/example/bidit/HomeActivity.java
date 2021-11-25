@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.FileUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -118,6 +120,15 @@ public class HomeActivity extends AppCompatActivity {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                ProgressDialog dialog = ProgressDialog.show(HomeActivity.this, "",
+                        "Refreshing...", true);
+                finish();
+                startActivity(getIntent());
+                return true;
+            default:
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -168,23 +179,23 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            int productId, winnerId, transactionId, highestBid=0;
+                            int productId, winnerId, transactionId, highestBid = 0;
                             int id = response.getJSONObject("auction").getInt("id");
                             productId = Integer.parseInt(response.getJSONObject("auction").getString("product_id"));
-                            try{
+                            try {
                                 winnerId = response.getJSONObject("auction").getInt("winner_id");
-                            } catch (JSONException e){
+                            } catch (JSONException e) {
                                 winnerId = 0;
                             }
-                            try{
+                            try {
                                 transactionId = response.getJSONObject("auction").getInt("transactionId");
-                            } catch (JSONException e){
+                            } catch (JSONException e) {
                                 transactionId = 0;
                             }
-                            try{
+                            try {
                                 JSONObject bid = response.getJSONObject("highestBid");
                                 highestBid = bid.getInt("amount");
-                            } catch (JSONException e){
+                            } catch (JSONException e) {
                                 highestBid = 0;
                             }
                             int isComplete = response.getJSONObject("auction").getInt("is_complete");
@@ -221,5 +232,13 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_items, menu);
+        return true;
+    }
+
 
 }

@@ -98,4 +98,5 @@
             android:text="Place a Bid"
             android:textSize="15sp" />
     </RelativeLayout>
+
 </ScrollView>

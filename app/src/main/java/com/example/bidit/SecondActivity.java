@@ -178,7 +178,7 @@ public class SecondActivity extends AppCompatActivity {
                                         });
                                 syncAuctionsInfo();
                                 ProgressDialog dialog = ProgressDialog.show(SecondActivity.this, "",
-                                        "Please wait...", true);
+                                        "Refreshing...", true);
                             }
                         });
                         break;
@@ -293,22 +293,25 @@ public class SecondActivity extends AppCompatActivity {
                 });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_items, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle item selection
-//        if (item.getItemId() == R.id.refresh) {
-//            Toast.makeText(SecondActivity.this, "Success",
-//                    Toast.LENGTH_LONG).show();
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_items, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                syncAuctionsInfo();
+                ProgressDialog dialog = ProgressDialog.show(SecondActivity.this, "",
+                        "Refreshing...", true);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }
