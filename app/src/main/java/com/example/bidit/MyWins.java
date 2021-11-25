@@ -83,6 +83,8 @@ public class MyWins extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.nav_account:
+                        intent = new Intent(MyWins.this, AccountActivity.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_settings:
                         return true;

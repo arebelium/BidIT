@@ -49,8 +49,8 @@ public class AccountActivity extends AppCompatActivity {
 
         //Texts in LinearLayout
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
-        TextView txtFirstName = findViewById(R.id.txtFirstNameAccount);
-        TextView txtEmail = findViewById(R.id.txtEmailAccount);
+        TextView txtFirstName = findViewById(R.id.editTxtName);
+        TextView txtEmail = findViewById(R.id.editTxtDescription);
         txtFirstName.setText("First name: \n\n" + prefs.getString("name", ""));
         txtEmail.setText("Email: \n\n" + prefs.getString("email", ""));
 
@@ -71,7 +71,13 @@ public class AccountActivity extends AppCompatActivity {
                         intent = new Intent(AccountActivity.this, AddProduct.class);
                         startActivity(intent);
                         return true;
-                    case R.id.nav_reserved:
+                    case R.id.nav_bids:
+                        intent = new Intent(AccountActivity.this, MyBids.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.nav_wins:
+                        intent = new Intent(AccountActivity.this, MyWins.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_account:
                         intent = new Intent(AccountActivity.this, AccountActivity.class);

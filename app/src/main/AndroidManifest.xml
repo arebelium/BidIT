@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BidIT">
         <activity android:name=".MyWins"></activity>
+        <activity android:name=".AccountActivity"/>
         <activity android:name=".MyBids" />
         <activity android:name=".SecondActivity" />
         <activity

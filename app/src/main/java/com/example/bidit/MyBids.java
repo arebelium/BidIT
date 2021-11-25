@@ -86,6 +86,8 @@ public class MyBids extends AppCompatActivity {
                         startActivity(intent);
                         return true;
                     case R.id.nav_account:
+                        intent = new Intent(MyBids.this, AccountActivity.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_settings:
                         return true;

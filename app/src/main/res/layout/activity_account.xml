@@ -39,16 +39,6 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/editTxtPrice"
-            android:layout_width="match_parent"
-            android:layout_height="83dp"
-            android:ems="10"
-            android:hint="Starting Price"
-            android:inputType="numberDecimal"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
