@@ -18,6 +18,7 @@
         android:title="@string/my_wins" />
     <item
         android:id="@+id/nav_cart"
+        android:visible="false"
         android:icon="@drawable/ic_cart"
         android:title="@string/cart" />
     <item
