@@ -17,4 +17,5 @@
     <string name="my_bids">My Bids</string>
     <string name="my_wins">My Wins</string>
     <string name="cart">Cart</string>
+    <string name="refresh">Refresh</string>
 </resources>
