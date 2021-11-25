@@ -7,9 +7,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,10 +35,25 @@ public class AccountActivity extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     private DatabaseReference database;
 
+    public void onBackPressed() {
+        finishAffinity();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        showNavbarImage();
+
+        //Texts in LinearLayout
+        SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+        TextView txtFirstName = findViewById(R.id.txtFirstNameAccount);
+        TextView txtEmail = findViewById(R.id.txtEmailAccount);
+        txtFirstName.setText("First name: \n\n" + prefs.getString("name", ""));
+        txtEmail.setText("Email: \n\n" + prefs.getString("email", ""));
+
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -78,6 +95,19 @@ public class AccountActivity extends AppCompatActivity {
         });
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void showNavbarImage() {
+        //navbar image start
+        androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_bg));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.navigation_image, null);
+        actionBar.setCustomView(view);
+        //navbar image end
     }
 
     @Override

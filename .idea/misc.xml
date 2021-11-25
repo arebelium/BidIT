@@ -3,10 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/suman/StudioProjects/BidIT/app/src/main/res/drawable/action_bar_bg.xml" value="0.4" />
+        <entry key="..\:/Users/Ainars/AndroidStudioProjects/BidIT_01/app/src/main/res/layout/activity_account.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Ainars/AndroidStudioProjects/BidIT_01/app/src/main/res/layout/activity_add_product.xml" value="0.16770833333333332" />
+        <entry key="..\:/Users/Ainars/AndroidStudioProjects/BidIT_01/app/src/main/res/layout/activity_home.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/suman/StudioProjects/BidIT/app/src/main/res/layout/activity_login.xml" value="0.15" />
-        <entry key="..\:/Users/suman/StudioProjects/BidIT/app/src/main/res/layout/navigation_image.xml" value="1.2919161676646707" />
-        <entry key="..\:/Users/suman/StudioProjects/BidIT/app/src/main/res/menu/navigation_menu.xml" value="0.44256410256410256" />
       </map>
     </option>
   </component>
