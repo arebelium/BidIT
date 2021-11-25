@@ -18,4 +18,6 @@
     <string name="my_wins">My Wins</string>
     <string name="cart">Cart</string>
     <string name="refresh">Refresh</string>
+    <string name="text">Night Mode</string>
+    <string name="mode">Light Mode</string>
 </resources>

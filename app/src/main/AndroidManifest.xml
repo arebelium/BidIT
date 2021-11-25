@@ -15,7 +15,7 @@
         <activity android:name=".MyBids" />
         <activity android:name=".SecondActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Settings"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
