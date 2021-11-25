@@ -68,6 +68,8 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.nav_reserved:
                         return true;
                     case R.id.nav_account:
+                        intent = new Intent(HomeActivity.this, AccountActivity.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_settings:
                         return true;

@@ -26,7 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class AddProduct extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity {
 
 
     public DrawerLayout drawerLayout;
@@ -36,7 +36,7 @@ public class AddProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.activity_account);
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -47,16 +47,18 @@ public class AddProduct extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        intent = new Intent(AddProduct.this, HomeActivity.class);
+                        intent = new Intent(AccountActivity.this, HomeActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_add:
-                        intent = new Intent(AddProduct.this, AddProduct.class);
+                        intent = new Intent(AccountActivity.this, AddProduct.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_reserved:
                         return true;
                     case R.id.nav_account:
+                        intent = new Intent(AccountActivity.this, AccountActivity.class);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_settings:
                         return true;
@@ -66,7 +68,7 @@ public class AddProduct extends AppCompatActivity {
                         editor.putString("email", "");
                         editor.putString("name", "");
                         editor.apply();
-                        intent = new Intent(AddProduct.this, LoginActivity.class);
+                        intent = new Intent(AccountActivity.this, LoginActivity.class);
                         startActivity(intent);
                         return true;
                     default:
@@ -76,7 +78,6 @@ public class AddProduct extends AppCompatActivity {
         });
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override
