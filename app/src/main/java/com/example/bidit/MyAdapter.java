@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class MyAdapter extends ArrayAdapter {
@@ -30,10 +32,15 @@ public class MyAdapter extends ArrayAdapter {
         View v = convertView;
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         v = inflater.inflate(R.layout.grid_view_items, null);
-        TextView textView = (TextView) v.findViewById(R.id.textView);
+        TextView textView = (TextView) v.findViewById(R.id.txtTimer2);
         ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
         textView.setText(productList.get(position).getProductName());
-        imageView.setImageResource(productList.get(position).getProductImage());
+        Picasso.with(getContext())
+                .load(productList.get(position).getProductImageUrl())
+                .noPlaceholder()
+                .fit()
+                .centerCrop().into(imageView);
+        //imageView.setImageResource(productList.get(position).getProductImage());
         return v;
 
     }

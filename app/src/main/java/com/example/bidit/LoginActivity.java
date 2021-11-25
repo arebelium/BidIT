@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
         String emailCache = prefs.getString("email", "");
         String nameCache = prefs.getString("name", "");
+        String idCache = prefs.getString("id", "");
         if (!emailCache.equals("") && !nameCache.equals("")) {
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         }
@@ -74,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                                 SharedPreferences.Editor editor = prefs.edit();
                                 editor.putString("email", emailTemp);
                                 editor.putString("name", item.child("name").getValue().toString());
+                                editor.putString("id", item.child("id").getValue().toString());
                                 editor.apply();
                                 Toast.makeText(LoginActivity.this, "Hello, " + item.child("name").getValue().toString() + "!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
@@ -131,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError error) {
+                        Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

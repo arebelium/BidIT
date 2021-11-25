@@ -12,10 +12,10 @@
         android:layout_centerHorizontal="true"
         android:padding="5dp"
         android:scaleType="fitXY"
-        android:src="@drawable/background_wallpaper" />
+        android:src="@drawable/not_available" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtTimer2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
