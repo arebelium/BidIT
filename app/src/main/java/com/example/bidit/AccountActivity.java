@@ -125,7 +125,7 @@ public class AccountActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         JSONArray jArray = (JSONArray) response;
                         bids = jArray.length();
-                        txtBids.setText(" Bids Total: " + bids);
+                        txtBids.setText(txtBids.getText()+" \nBids Total: " + bids);
                     }
                     @Override
                     public void onError(ANError error) {
@@ -138,7 +138,7 @@ public class AccountActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         JSONArray jArray = (JSONArray) response;
                         wins = jArray.length();
-                        txtBids.setText(txtBids.getText()+"\n Wins Total: " + wins + "\nDeals Total: " + deals);
+                        txtBids.setText(txtBids.getText()+"\n Wins Total: " + wins);
                     }
                     @Override
                     public void onError(ANError error) {
