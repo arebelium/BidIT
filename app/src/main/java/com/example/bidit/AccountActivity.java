@@ -43,6 +43,7 @@ public class AccountActivity extends AppCompatActivity {
     int bids;
     int wins;
     int deals;
+    TextView txtFirstName, txtEmail, txtBids;
 
     public void onBackPressed() {
         finishAffinity();
@@ -59,13 +60,11 @@ public class AccountActivity extends AppCompatActivity {
 
         //Texts in LinearLayout
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
-        TextView txtFirstName = findViewById(R.id.txtFirstNameAccount);
-        TextView txtEmail = findViewById(R.id.txtEmailAccount);
-        TextView txtBids = findViewById(R.id.txtStatsAccount);
+        txtFirstName = findViewById(R.id.txtFirstNameAccount);
+        txtEmail = findViewById(R.id.txtEmailAccount);
+        txtBids = findViewById(R.id.txtStatsAccount);
         txtFirstName.setText("First name: \n\n" + prefs.getString("name", ""));
         txtEmail.setText("Email: \n\n" + prefs.getString("email", ""));
-        txtBids.setText(" Bids Total: " + bids + "\n Wins Total: " + wins + "\nDeals Total: " + deals);
-
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -126,6 +125,7 @@ public class AccountActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         JSONArray jArray = (JSONArray) response;
                         bids = jArray.length();
+                        txtBids.setText(" Bids Total: " + bids);
                     }
                     @Override
                     public void onError(ANError error) {
@@ -138,6 +138,7 @@ public class AccountActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         JSONArray jArray = (JSONArray) response;
                         wins = jArray.length();
+                        txtBids.setText(txtBids.getText()+"\n Wins Total: " + wins + "\nDeals Total: " + deals);
                     }
                     @Override
                     public void onError(ANError error) {
@@ -150,6 +151,7 @@ public class AccountActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         JSONArray jArray = (JSONArray) response;
                         deals = jArray.length();
+                        txtBids.setText(txtBids.getText()+"\nDeals Total: " + deals);
                     }
                     @Override
                     public void onError(ANError error) {
