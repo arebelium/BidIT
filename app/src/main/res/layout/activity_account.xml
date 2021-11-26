@@ -19,23 +19,35 @@
             android:text="" />
 
         <TextView
-            android:id="@+id/editTxtName"
+            android:id="@+id/txtFirstNameAccount"
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="50dp"
             android:ems="10"
-            android:hint="Item name"
-            android:inputType="text"
+            android:text=""
             android:singleLine="false"
             android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/editTxtDescription"
+            android:id="@+id/txtEmailAccount"
             android:layout_width="match_parent"
-            android:layout_height="103dp"
+            android:layout_height="102dp"
+            android:layout_marginTop="50dp"
             android:ems="10"
-            android:hint="Description"
-            android:inputType="textMultiLine"
+            android:text=""
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtStatsAccount"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="50dp"
+            android:ems="10"
+            android:text=""
+            android:singleLine="false"
             android:textAlignment="center"
             android:textSize="20sp" />
 

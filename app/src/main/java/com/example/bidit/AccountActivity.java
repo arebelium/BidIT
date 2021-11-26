@@ -18,9 +18,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONArray;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,6 +40,10 @@ public class AccountActivity extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     private DatabaseReference database;
 
+    int bids;
+    int wins;
+    int deals;
+
     public void onBackPressed() {
         finishAffinity();
     }
@@ -46,13 +55,16 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
 
         showNavbarImage();
+        getCountBids();
 
         //Texts in LinearLayout
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
-        TextView txtFirstName = findViewById(R.id.editTxtName);
-        TextView txtEmail = findViewById(R.id.editTxtDescription);
+        TextView txtFirstName = findViewById(R.id.txtFirstNameAccount);
+        TextView txtEmail = findViewById(R.id.txtEmailAccount);
+        TextView txtBids = findViewById(R.id.txtStatsAccount);
         txtFirstName.setText("First name: \n\n" + prefs.getString("name", ""));
         txtEmail.setText("Email: \n\n" + prefs.getString("email", ""));
+        txtBids.setText(" Bids Total: " + bids + "\n Wins Total: " + wins + "\nDeals Total: " + deals);
 
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
@@ -103,6 +115,48 @@ public class AccountActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    private void getCountBids() {
+        SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+        String idCache = prefs.getString("id", "");
+        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.get("http://bidit-web.herokuapp.com/api/users/"+idCache+"/bids")
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        JSONArray jArray = (JSONArray) response;
+                        bids = jArray.length();
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                    }
+                });
+        AndroidNetworking.get("http://bidit-web.herokuapp.com/api/users/"+idCache+"/wins")
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        JSONArray jArray = (JSONArray) response;
+                        wins = jArray.length();
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                    }
+                });
+        AndroidNetworking.get("http://bidit-web.herokuapp.com/api/users/"+idCache+"/transactions")
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        JSONArray jArray = (JSONArray) response;
+                        deals = jArray.length();
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                    }
+                });
+    }
+
     public void showNavbarImage() {
         //navbar image start
         androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
@@ -124,13 +178,4 @@ public class AccountActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    private void writeNewProduct(Product product) { //writes product to database
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"));
-        Date currentLocalTime = cal.getTime();
-        @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss_SSS");
-        String localTime = date.format(currentLocalTime);
-        database.child("products").child(localTime).setValue(product);
-    }
-
 }
